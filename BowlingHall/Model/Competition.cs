@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BowlingLib.Model
 {
-    class Competition
+    public class Competition
     {
         public List<Match> Matches { get; set; }
         public Dictionary<Member,decimal> Players { get; set; }

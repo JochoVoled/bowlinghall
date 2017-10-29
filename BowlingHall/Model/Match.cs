@@ -8,7 +8,12 @@ namespace BowlingLib.Model
 {
     public class Match : IMatch
     {
-        public Dictionary<int, IGame> Players { get; set; }
+        //public Dictionary<int, IGame> Players { get; set; }
+        
+        private KeyValuePair<Member,IGame> playerOne { get; set; }
+        private KeyValuePair<Member, IGame> playerTwo { get; set; }
+        public KeyValuePair<Member, IGame> PlayerOne { get => playerOne; }
+        public KeyValuePair<Member, IGame> PlayerTwo { get => playerTwo; }
         public int WinnerId
         {
             get
@@ -19,23 +24,35 @@ namespace BowlingLib.Model
             set { WinnerId = value; }
         }
 
-        public Match(List<Member> Participants)
+        public Match(Member PlayerOne, Member PlayerTwo)
         {
-            foreach (Member participant in Participants)
-            {
-                Players.Add(participant.Id, new Game());
-            }
+            playerOne = new KeyValuePair<Member,IGame>(PlayerOne, new Game());
+            playerTwo = new KeyValuePair<Member, IGame>(PlayerTwo, new Game());
+            
             WinnerId = 0;
         }
+        /// <summary>
+        /// Calculates the winning player based off the players' scores
+        /// </summary>
+        /// <returns>The MemberId of the winning player</returns>
         public int CalculateWinner()
         {
-            Dictionary<int, int> MapPlayerToScore = new Dictionary<int, int>();
-            foreach (KeyValuePair<int, IGame> player in Players)
-            {
-                MapPlayerToScore.Add(player.Key, player.Value.Score);
-            }
-            int winningMemberId = MapPlayerToScore.OrderBy(x => x.Value).First().Key;
-            return winningMemberId;
+            if (playerOne.Value.Score > playerTwo.Value.Score)
+                return playerOne.Key.Id;
+            return playerTwo.Key.Id;
+            
+            //Dictionary<int, int> MapPlayerToScore = new Dictionary<int, int>();
+            //foreach (KeyValuePair<int, IGame> player in Players)
+            //{
+            //    MapPlayerToScore.Add(player.Key, player.Value.Score);
+            //}
+            //int winningMemberId = MapPlayerToScore.OrderBy(x => x.Value).First().Key;
+            //return winningMemberId;
+        }
+
+        public void Play()
+        {
+            throw new NotImplementedException();
         }
     }
 }

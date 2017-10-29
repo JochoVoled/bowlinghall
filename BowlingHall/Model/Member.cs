@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BowlingLib.Model
+﻿namespace BowlingLib.Model
 {
     public class Member
     {

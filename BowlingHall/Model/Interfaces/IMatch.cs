@@ -4,9 +4,12 @@ namespace BowlingLib.Model.Interfaces
 {
     public interface IMatch
     {
-        Dictionary<int, IGame> Players { get; set; }
+        //Dictionary<int, IGame> Players { get; set; }
+        KeyValuePair<Member,IGame> PlayerOne { get; }
+        KeyValuePair<Member, IGame> PlayerTwo { get; }
         int WinnerId { get; set; }
 
         int CalculateWinner();
+        void Play();
     }
 }
