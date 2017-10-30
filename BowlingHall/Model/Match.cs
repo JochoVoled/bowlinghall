@@ -38,8 +38,8 @@ namespace BowlingLib.Model
         public int CalculateWinner()
         {
             if (playerOne.Value.Score > playerTwo.Value.Score)
-                return playerOne.Key.Id;
-            return playerTwo.Key.Id;
+                return playerOne.Key.MemberId;
+            return playerTwo.Key.MemberId;
             
             //Dictionary<int, int> MapPlayerToScore = new Dictionary<int, int>();
             //foreach (KeyValuePair<int, IGame> player in Players)
@@ -53,6 +53,12 @@ namespace BowlingLib.Model
         public void Play()
         {
             throw new NotImplementedException();
+        }
+        public bool HasMatch(Member one, Member another)
+        {
+            if (playerOne.Key == one && playerTwo.Key == another) return true;
+            if (playerTwo.Key == one && playerOne.Key == another) return true;
+            return false;
         }
     }
 }

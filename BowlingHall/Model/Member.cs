@@ -1,7 +1,16 @@
 ﻿namespace BowlingLib.Model
 {
-    public class Member
+    public class Member: System.IEquatable<Member>
     {
-        public int Id { get; set; }
+        public int MemberId { get; set; }
+        public Member(int MemberId)
+        {
+            this.MemberId = MemberId;
+        }
+
+        public bool Equals(Member other)
+        {
+            return MemberId == other.MemberId;
+        }
     }
 }

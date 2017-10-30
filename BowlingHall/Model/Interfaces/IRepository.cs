@@ -22,13 +22,13 @@ namespace BowlingLib.Model.Interfaces
         /// <typeparam name="Competition"></typeparam>
         /// <param name="id">The available id</param>
         /// <returns>Returns null if id does not map to any registered competition</returns>
-        Competition GetById<Competition>(int id);
+        Competition GetCompetitionById(int id);
         /// <summary>
         /// Gets all added Competitions
         /// </summary>
         /// <typeparam name="Competition">Intended to be clue to method which table you wish to GetAll of</typeparam>
         /// <returns>All Competitions as an IEnumerable collection</returns>
-        IEnumerable<Competition> GetAll<Competition>();
+        IEnumerable<Competition> GetAllCompetition();
         /// <summary>
         /// Updates a competition to database, based on a competition object
         /// </summary>
