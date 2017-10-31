@@ -36,9 +36,8 @@ namespace BowlingTestBase
             Competition competition = new Competition(1, members);
             Db.Members.AddRange(members);
             Db.Competitions.Add(competition);
-            // TODO, sort out if matches are property of Competition, or Match has Id to relevant Competition.
-            // Maybe add matches once answer to question above is known
-            Db.Lanes.Add(new Lane(1));
+            Db.Matches.AddRange(competition.Matches);
+            Db.Lanes.Add(new Lane(1));            
             Db.CompetitionMembers.AddRange(
                 new List<CompetitionMember> {
                     new CompetitionMember(competition.CompetitionId, 1, 0m),
@@ -47,7 +46,9 @@ namespace BowlingTestBase
             );
             Db.MatchMembers.AddRange(new List<MatchMember> {
                 new MatchMember(0,1),
-                new MatchMember(0,2)
+                new MatchMember(0,2),
+                new MatchMember(1,1),
+                new MatchMember(1,2)
             });
         }
     }
