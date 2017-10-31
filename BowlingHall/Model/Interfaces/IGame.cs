@@ -9,5 +9,6 @@ namespace BowlingLib.Model.Interfaces
         int Score { get; }
 
         int CalculateScore();
+        char ThrowBall();
     }
 }

@@ -9,6 +9,7 @@ namespace BowlingLib.Model
     {
         public int CompetitionId { get; set; }
         public List<Match> Matches { get; set; }
+        // In order to avoid confusin and circle-reference issues: These are for reference within the competition
         public Dictionary<Member,decimal> Players { get; set; }
 
         public Competition(int CompetitionId, List<Member> Players)
@@ -22,7 +23,7 @@ namespace BowlingLib.Model
                 {
                     if (self == other) continue;
                     if (Matches.Any(x => x.HasMatch(self, other))) continue;
-                    Matches.Add(new Match(self, other));
+                    Matches.Add(new Match(self, other,this.CompetitionId));
                 }
             }
         }
