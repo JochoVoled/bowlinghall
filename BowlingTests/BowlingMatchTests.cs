@@ -17,7 +17,6 @@ namespace BowlingTests
 
             var systemUnderTest = new Match(member1,member2);
             systemUnderTest.Play();
-            // TODO, Match should have some manner of Play method
             int winnerId = systemUnderTest.CalculateWinner();
             // Assert that the correct player won
             Assert.Equal(2, winnerId);
