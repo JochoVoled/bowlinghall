@@ -12,6 +12,11 @@ namespace BowlingLib.Model
         // In order to avoid confusin and circle-reference issues: These are for reference within the competition
         public Dictionary<Member,decimal> Players { get; set; }
 
+        public Competition()
+        {
+            Players = new Dictionary<Member, decimal>();
+            Matches = new List<Match>();
+        }
         public Competition(int CompetitionId, List<Member> Players)
         {
             this.CompetitionId = CompetitionId;
