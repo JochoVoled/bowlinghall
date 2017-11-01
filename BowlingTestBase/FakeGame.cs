@@ -34,5 +34,10 @@ namespace BowlingTestBase
         {
             throw new NotImplementedException();
         }
+
+        public char ThrowBall()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
