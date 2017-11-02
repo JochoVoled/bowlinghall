@@ -27,13 +27,13 @@ namespace BowlingLib.Model
             currentRoll = 1;
             Series = new List<string> { "", "", "" };
         }
+        /// <summary>
+        /// Steps through the series strings, and sums the scores. Adds flat values to Spares and Strikes right now.
+        /// </summary>
+        /// <returns>The summarized final score</returns>
         public int CalculateScore()
         {
             int tmp = 0;
-            // Step through the score string (param?)
-            // Add the number, 0 for -
-            // For S and X, use 20 and 30 temporarily
-            // TODO do something proper for S and X
             foreach (string series in Series)
             {
                 var charArr = series.ToCharArray();
@@ -68,6 +68,7 @@ namespace BowlingLib.Model
             score = tmp;
             return score;
         }
+
         public void RegisterRoll(char roll)
         {
             string str = roll.ToString().ToUpper();
@@ -78,6 +79,10 @@ namespace BowlingLib.Model
             Series[currentSeries] += str;
         }
 
+        /// <summary>
+        /// Randomly finds a throw result
+        /// </summary>
+        /// <returns>A char representing the throw result</returns>
         public char ThrowBall()
         {
             char[] possibleOutcomes = { '-', 'S', 'X','1','2','3','4','5','6','7','8','9' };
