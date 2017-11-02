@@ -8,10 +8,13 @@ namespace BowlingTestBase
 {
     public class FakeCompetition : ICompetition
     {
+        #region properties
         public int CompetitionId { get; set; }
         public List<IMatch> Matches { get; set; }
         public Dictionary<Member, decimal> Players { get; set; }
+        #endregion
 
+        #region constructors
         public FakeCompetition()
         {
             Players = new Dictionary<Member, decimal>();
@@ -23,6 +26,7 @@ namespace BowlingTestBase
             this.CompetitionId = CompetitionId;
             MatchAllPlayersOnce(Players);
         }
+        #endregion
 
         /// <summary>
         /// Add one, and only one, match between every player in the competition

@@ -6,11 +6,13 @@ namespace BowlingLib.Model
 {
     public class Competition: ICompetition
     {
+        #region properties
         public int CompetitionId { get; set; }
         public List<IMatch> Matches { get; set; }
         // In order to avoid confusin and circle-reference issues: These are for reference within the competition
         public Dictionary<Member,decimal> Players { get; set; }
-
+        #endregion
+        #region constructors
         public Competition()
         {
             Players = new Dictionary<Member, decimal>();
@@ -22,6 +24,7 @@ namespace BowlingLib.Model
             this.CompetitionId = CompetitionId;
             MatchAllPlayersOnce(Players);
         }
+        #endregion
 
         /// <summary>
         /// Add one, and only one, match between every player in the competition
