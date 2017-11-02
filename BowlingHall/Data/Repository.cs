@@ -1,8 +1,8 @@
-﻿using BowlingLib.Model.Interfaces;
+﻿using BowlingLib.Model;
+using BowlingLib.Model.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using BowlingLib.Model;
+using System.Linq;
 
 namespace BowlingLib.Data
 {
@@ -22,39 +22,58 @@ namespace BowlingLib.Data
             }
         }
 
-        public DatabaseResultState Create(Competition competition)
+        public DatabaseResultState Create(ICompetition competition)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Competitions.Add((Competition)competition);
+                return DatabaseResultState.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResultState.failed;
+            }            
         }
 
-        public IEnumerable<Competition> GetAll<Competition>()
+        public IEnumerable<ICompetition> GetAllCompetition()
         {
-            throw new NotImplementedException();
+            // TODO debug, then shrink to one line
+            var data = (IEnumerable<Competition>)_context.Competitions.ToList();
+            return data;
         }
 
-        public IEnumerable<Competition> GetAllCompetition()
+        public ICompetition GetCompetitionById(int id)
         {
-            throw new NotImplementedException();
+            // TODO debug, then shrink to one line
+            var data = _context.Competitions.First(x => x.CompetitionId == id);
+            return data;
         }
 
-        public Competition GetById<Competition>(int id)
+        public DatabaseResultState Remove(ICompetition competition)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Competitions.Remove((Competition)competition);
+                return DatabaseResultState.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResultState.failed;
+            }
         }
 
-        public Competition GetCompetitionById(int id)
+        public DatabaseResultState Update(ICompetition competition)
         {
-            throw new NotImplementedException();
-        }
-
-        public DatabaseResultState Remove(Competition competition)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DatabaseResultState Update(Competition competition)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Competitions.First(x => x.CompetitionId == competition.CompetitionId).Matches = competition.Matches;
+                _context.Competitions.First(x => x.CompetitionId == competition.CompetitionId).Players = competition.Players;
+                return DatabaseResultState.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResultState.failed;
+            }
         }
     }
 }
