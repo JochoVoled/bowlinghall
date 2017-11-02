@@ -11,11 +11,11 @@ namespace BowlingTestBase
     /// </summary>
     class FakeRepository : IRepository
     {
-        public DatabaseResultState Create(Competition competition)
+        public DatabaseResultState Create(ICompetition competition)
         {
             try
             {
-                InMemDb.Db.Competitions.Add(competition);
+                InMemDb.Db.Competitions.Add((FakeCompetition)competition);
                 return DatabaseResultState.successful;
             }
             catch (Exception)
@@ -24,21 +24,21 @@ namespace BowlingTestBase
             }            
         }
 
-        public IEnumerable<Competition> GetAllCompetition()
+        public IEnumerable<ICompetition> GetAllCompetition()
         {
             return InMemDb.Db.Competitions;
         }
 
-        public Competition GetCompetitionById(int id)
+        public ICompetition GetCompetitionById(int id)
         {
             return InMemDb.Db.Competitions.Find(x => x.CompetitionId == id);
         }
 
-        public DatabaseResultState Remove(Competition competition)
+        public DatabaseResultState Remove(ICompetition competition)
         {
             try
             {
-                InMemDb.Db.Competitions.Remove(competition);
+                InMemDb.Db.Competitions.Remove((FakeCompetition)competition);
                 return DatabaseResultState.successful;
             }
             catch (Exception)
@@ -47,7 +47,7 @@ namespace BowlingTestBase
             }
         }
 
-        public DatabaseResultState Update(Competition competition)
+        public DatabaseResultState Update(ICompetition competition)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace BowlingTestBase
             catch (Exception)
             {
                 return DatabaseResultState.failed;
-            }            
+            }
         }
     }
 }
