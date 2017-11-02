@@ -82,6 +82,12 @@ namespace BowlingLib.Model
         {
             char[] possibleOutcomes = { '-', 'S', 'X','1','2','3','4','5','6','7','8','9' };
             Random dice = new Random();
+            // TODO Add validation to throw randomization:
+            //  Sum of two throws may not exceed 10, as that is a Spare
+            //  No throw may proceed Strike
+            //  Tenth round will only have a third throw if the second is a S or X
+            //  X can only happen first throw (or second and third of 10th round). Spare can only happen second throw
+            //  A strike ends the current round (unless 10th turn)
             return possibleOutcomes[dice.Next(0,possibleOutcomes.Length)];
         }
     }

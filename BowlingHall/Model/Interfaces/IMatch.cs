@@ -11,5 +11,6 @@ namespace BowlingLib.Model.Interfaces
 
         int CalculateWinner();
         void Play();
+        bool HasMatch(Member one, Member another);
     }
 }

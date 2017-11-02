@@ -1,23 +1,24 @@
 ﻿using BowlingLib.Model.Interfaces;
+using System;
 using System.Collections.Generic;
+using BowlingLib.Model;
 using System.Linq;
 
-namespace BowlingLib.Model
+namespace BowlingTestBase
 {
-    public class Competition: ICompetition
+    public class FakeCompetition : ICompetition
     {
         public int CompetitionId { get; set; }
         public List<IMatch> Matches { get; set; }
-        // In order to avoid confusin and circle-reference issues: These are for reference within the competition
-        public Dictionary<Member,decimal> Players { get; set; }
+        public Dictionary<Member, decimal> Players { get; set; }
 
-        public Competition()
+        public FakeCompetition()
         {
             Players = new Dictionary<Member, decimal>();
             Matches = new List<IMatch>();
         }
 
-        public Competition(int CompetitionId, List<Member> Players): this()
+        public FakeCompetition(int CompetitionId, List<Member> Players): this()
         {
             this.CompetitionId = CompetitionId;
             MatchAllPlayersOnce(Players);
@@ -36,7 +37,7 @@ namespace BowlingLib.Model
                 {
                     if (self == other) continue;
                     if (Matches.Any(x => x.HasMatch(self, other))) continue;
-                    Matches.Add(new Match(self, other, this.CompetitionId));
+                    Matches.Add(new FakeMatch(self, other, CompetitionId));
                 }
             }
         }
@@ -45,6 +46,7 @@ namespace BowlingLib.Model
         /// Gets the Member obect with highest win ratio
         /// </summary>
         /// <returns>Member obect with highest win ratio</returns>
+
         public Member GetChampion()
         {
             foreach (var player in Players)

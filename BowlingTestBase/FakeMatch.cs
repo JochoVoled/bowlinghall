@@ -1,13 +1,12 @@
 ﻿using BowlingLib.Model.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using BowlingLib.Model;
 
 namespace BowlingTestBase
 {
-    class FakeMatch : IMatch
+    public class FakeMatch : IMatch
     {
+        public int CompetitionId { get; set; }
         private KeyValuePair<Member, IGame> playerOne { get; set; }
         private KeyValuePair<Member, IGame> playerTwo { get; set; }
         public KeyValuePair<Member, IGame> PlayerOne { get => playerOne; }
@@ -32,17 +31,39 @@ namespace BowlingTestBase
             WinnerId = 0;
         }
 
+        public FakeMatch(Member PlayerOne, Member PlayerTwo, int CompetitionId): this(PlayerOne,PlayerTwo)
+        {
+            this.CompetitionId = CompetitionId;
+        }
+
         public int CalculateWinner()
         {
             if (playerOne.Value.Score > playerTwo.Value.Score)
                 return playerOne.Key.MemberId;
             return playerTwo.Key.MemberId;
-            //throw new NotImplementedException();
         }
 
         public void Play()
         {
-            throw new NotImplementedException();
+            string p1series = "12,34,5S,63,72,81,9-,42,52,43-";
+            string p2series = "7S,X-,32,5S,8S,5S,X-,X-,4S,5S0";
+            PlayerOne.Value.Series.Add(p1series);
+            PlayerTwo.Value.Series.Add(p2series);
+            p1series = "12,34,5S,63,72,81,9-,42,52,43-";
+            p2series = "7S,X-,32,5S,8S,5S,X-,X-,4S,5S0";
+            PlayerOne.Value.Series.Add(p1series);
+            PlayerTwo.Value.Series.Add(p2series);
+            p1series = "12,34,5S,63,72,81,9-,42,52,43-";
+            p2series = "7S,X-,32,5S,8S,5S,X-,X-,4S,5S0";
+            PlayerOne.Value.Series.Add(p1series);
+            PlayerTwo.Value.Series.Add(p2series);
+        }
+
+        public bool HasMatch(Member one, Member another)
+        {
+            if (playerOne.Key == one && playerTwo.Key == another) return true;
+            if (playerTwo.Key == one && playerOne.Key == another) return true;
+            return false;
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using BowlingLib.Model;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BowlingTestBase
 {
@@ -10,7 +8,7 @@ namespace BowlingTestBase
     /// </summary>
     public class InMemDb
     {
-        private static volatile InMemDb db;
+        private static InMemDb db { get; set; }
 
         public static InMemDb Db
         {
@@ -24,7 +22,7 @@ namespace BowlingTestBase
             }
         }
         public List<Competition> Competitions { get; set; }
-        public List<Match> Matches { get; set; }
+        public List<FakeMatch> Matches { get; set; }
         public List<Member> Members { get; set; }
         public List<Lane> Lanes { get; set; }
         public List<CompetitionMember> CompetitionMembers { get; set; }
@@ -32,19 +30,27 @@ namespace BowlingTestBase
 
         public InMemDb()
         {
+            Competitions = new List<Competition>();
+            Matches = new List<FakeMatch>();
+            Members = new List<Member>();
+            Lanes = new List<Lane>();
+            CompetitionMembers = new List<CompetitionMember>();
+            MatchMembers = new List<MatchMember>();
+
             List<Member> members = new List<Member> { new Member(1), new Member(2) };
             Competition competition = new Competition(1, members);
-            Db.Members.AddRange(members);
-            Db.Competitions.Add(competition);
-            Db.Matches.AddRange(competition.Matches);
-            Db.Lanes.Add(new Lane(1));            
-            Db.CompetitionMembers.AddRange(
+            Members.AddRange(members);
+            Competitions.Add(competition);
+            competition.Matches.ForEach(x => Matches.Add((FakeMatch)x)); // System.InvalidCastException: 'Unable to cast object of type 'BowlingLib.Model.Match' to type 'BowlingTestBase.FakeMatch'.'
+
+            Lanes.Add(new Lane(1));
+            CompetitionMembers.AddRange(
                 new List<CompetitionMember> {
                     new CompetitionMember(competition.CompetitionId, 1, 0m),
                     new CompetitionMember(competition.CompetitionId, 2, 0m)
                 }
             );
-            Db.MatchMembers.AddRange(new List<MatchMember> {
+            MatchMembers.AddRange(new List<MatchMember> {
                 new MatchMember(0,1),
                 new MatchMember(0,2),
                 new MatchMember(1,1),

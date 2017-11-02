@@ -11,6 +11,7 @@ namespace BowlingLib.Model
     {
         public int CompetitionId { get; set; }
 
+        private int winnerId { get; set; }
         private KeyValuePair<Member,IGame> playerOne { get; set; }
         private KeyValuePair<Member, IGame> playerTwo { get; set; }
         public KeyValuePair<Member, IGame> PlayerOne { get => playerOne; }
@@ -19,10 +20,11 @@ namespace BowlingLib.Model
         {
             get
             {
-                if (WinnerId == 0) return CalculateWinner();
-                return WinnerId;
+                if (winnerId == 0) return CalculateWinner();
+                return winnerId;
             }
-            set { WinnerId = value; }
+            // TODO keep an eye on this if it causes tests to crash!
+            set { winnerId = value; }
         }
 
         public Match(Member PlayerOne, Member PlayerTwo)
@@ -30,14 +32,14 @@ namespace BowlingLib.Model
             playerOne = new KeyValuePair<Member,IGame>(PlayerOne, new Game());
             playerTwo = new KeyValuePair<Member, IGame>(PlayerTwo, new Game());
             
-            WinnerId = 0;
+            winnerId = 0;
         }
         public Match(Member PlayerOne, Member PlayerTwo, int CompetitionId): this(PlayerOne,PlayerTwo)
         {
             this.CompetitionId = CompetitionId;
         }
         /// <summary>
-        /// Calculates the winning player based off the players' scores
+        /// Calculates the winning player based off the players' scores. Returns The MemberId of the winning player.
         /// </summary>
         /// <returns>The MemberId of the winning player</returns>
         public int CalculateWinner()
