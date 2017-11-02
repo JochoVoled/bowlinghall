@@ -8,8 +8,9 @@ namespace BowlingTestBase
     /// </summary>
     public class InMemDb
     {
+        
+        #region properties
         private static InMemDb db { get; set; }
-
         public static InMemDb Db
         {
             get
@@ -21,16 +22,17 @@ namespace BowlingTestBase
                 return db;
             }
         }
-        public List<Competition> Competitions { get; set; }
+        public List<FakeCompetition> Competitions { get; set; }
         public List<FakeMatch> Matches { get; set; }
         public List<Member> Members { get; set; }
         public List<Lane> Lanes { get; set; }
         public List<CompetitionMember> CompetitionMembers { get; set; }
         public List<MatchMember> MatchMembers { get; set; }
+        #endregion
 
         public InMemDb()
         {
-            Competitions = new List<Competition>();
+            Competitions = new List<FakeCompetition>();
             Matches = new List<FakeMatch>();
             Members = new List<Member>();
             Lanes = new List<Lane>();
@@ -38,7 +40,7 @@ namespace BowlingTestBase
             MatchMembers = new List<MatchMember>();
 
             List<Member> members = new List<Member> { new Member(1), new Member(2) };
-            Competition competition = new Competition(1, members);
+            FakeCompetition competition = new FakeCompetition(1, members);
             Members.AddRange(members);
             Competitions.Add(competition);
             competition.Matches.ForEach(x => Matches.Add((FakeMatch)x)); // System.InvalidCastException: 'Unable to cast object of type 'BowlingLib.Model.Match' to type 'BowlingTestBase.FakeMatch'.'

@@ -28,7 +28,7 @@ namespace BowlingTests
             // TODO, debug unit test
             Member member1 = InMemDb.Db.Members.Find(x => x.MemberId == 1);
             Member member2 = InMemDb.Db.Members.Find(x => x.MemberId == 2);
-            Competition sut = InMemDb.Db.Competitions.Find(x => x.CompetitionId == 1);
+            FakeCompetition sut = InMemDb.Db.Competitions.Find(x => x.CompetitionId == 1);
             sut.Matches.ForEach(x => x.Play());
             
             // Call GetChampion from Competition class
