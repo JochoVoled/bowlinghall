@@ -29,7 +29,7 @@ namespace BowlingTestBase
         public List<CompetitionMember> CompetitionMembers { get; set; }
         public List<MatchMember> MatchMembers { get; set; }
         #endregion
-
+        #region constructor
         protected InMemDb()
         {
             Competitions = new List<FakeCompetition>();
@@ -38,7 +38,14 @@ namespace BowlingTestBase
             Lanes = new List<Lane>();
             CompetitionMembers = new List<CompetitionMember>();
             MatchMembers = new List<MatchMember>();
+        }
+        #endregion
 
+        /// <summary>
+        /// Seeds the InMemDb. Unknown: Does it have to be static?
+        /// </summary>
+        protected void Seed()
+        {
             List<Member> members = new List<Member> { new Member(1), new Member(2) };
             FakeCompetition competition = new FakeCompetition(1, members);
             Members.AddRange(members);
