@@ -1,11 +1,12 @@
-﻿using BowlingLib.Model;
+﻿using BowlingLib.Data;
+using BowlingLib.Model;
 using BowlingLib.Model.Interfaces;
 using BowlingTestBase;
 using Xunit;
 
 namespace BowlingIntegrationTests
 {
-    public class ValidateRequirements
+    public class VerifyRequirements
     {
         //Verifiera med integrationstester attdet går att generera, lagra och hämta tävlingsinformation.
         [Fact]
@@ -21,7 +22,7 @@ namespace BowlingIntegrationTests
         [Fact]
         public void CruMember()
         {
-            FakeRepository repo = new FakeRepository();
+            Repository repo = new Repository();
             Member member = new Member(999);
             // Create Member, assert
             var cResult = repo.Create(member);
