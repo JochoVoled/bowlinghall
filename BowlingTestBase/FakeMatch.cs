@@ -7,6 +7,7 @@ namespace BowlingTestBase
     public class FakeMatch : IMatch
     {
         public int CompetitionId { get; set; }
+        private int winnerId { get; set; }
         private KeyValuePair<Member, IGame> playerOne { get; set; }
         private KeyValuePair<Member, IGame> playerTwo { get; set; }
         public KeyValuePair<Member, IGame> PlayerOne { get => playerOne; }
@@ -17,10 +18,10 @@ namespace BowlingTestBase
         {
             get
             {
-                if (WinnerId == 0) return CalculateWinner();
-                return WinnerId;
+                if (winnerId == 0) return CalculateWinner();
+                return winnerId;
             }
-            set { WinnerId = value; }
+            set { winnerId = value; }
         }
 
         public FakeMatch(Member PlayerOne, Member PlayerTwo)
@@ -28,7 +29,7 @@ namespace BowlingTestBase
             playerOne = new KeyValuePair<Member, IGame>(PlayerOne, new FakeGame());
             playerTwo = new KeyValuePair<Member, IGame>(PlayerTwo, new FakeGame());
 
-            WinnerId = 0;
+            winnerId = 0;
         }
 
         public FakeMatch(Member PlayerOne, Member PlayerTwo, int CompetitionId): this(PlayerOne,PlayerTwo)
