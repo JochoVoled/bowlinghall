@@ -1,7 +1,5 @@
 using BowlingLib.Model;
 using BowlingTestBase;
-using System;
-using System.Collections.Generic;
 using Xunit;
 
 namespace BowlingTests

@@ -1,16 +1,13 @@
 ﻿using BowlingLib.Model.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace BowlingLib.Model
 {
     public class Match : IMatch
     {
+        #region properties
         public int CompetitionId { get; set; }
-
         private int winnerId { get; set; }
         private KeyValuePair<Member,IGame> playerOne { get; set; }
         private KeyValuePair<Member, IGame> playerTwo { get; set; }
@@ -23,10 +20,11 @@ namespace BowlingLib.Model
                 if (winnerId == 0) return CalculateWinner();
                 return winnerId;
             }
-            // TODO keep an eye on this if it causes tests to crash!
             set { winnerId = value; }
         }
+        #endregion
 
+        #region constructors
         public Match(Member PlayerOne, Member PlayerTwo)
         {
             playerOne = new KeyValuePair<Member,IGame>(PlayerOne, new Game());
@@ -38,6 +36,8 @@ namespace BowlingLib.Model
         {
             this.CompetitionId = CompetitionId;
         }
+        #endregion
+
         /// <summary>
         /// Calculates the winning player based off the players' scores. Returns The MemberId of the winning player.
         /// </summary>
@@ -49,6 +49,9 @@ namespace BowlingLib.Model
             return playerTwo.Key.MemberId;
         }
 
+        /// <summary>
+        /// Each player throw twice in each round, for three series
+        /// </summary>
         public void Play()
         {
             // 1-9 are pins, - is a miss, S is a spare, X is a strike, . is 'not yet thrown'
