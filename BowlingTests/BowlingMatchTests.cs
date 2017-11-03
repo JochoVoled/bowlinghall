@@ -23,8 +23,7 @@ namespace BowlingTests
         }
         [Fact]
         public void BestWinRatioIsReturnedAsChampion()
-        {
-            // TODO, debug unit test
+        {            
             Member member1 = InMemDb.Db.Members.Find(x => x.MemberId == 1);
             Member member2 = InMemDb.Db.Members.Find(x => x.MemberId == 2);
             FakeCompetition sut = InMemDb.Db.Competitions.Find(x => x.CompetitionId == 1);
