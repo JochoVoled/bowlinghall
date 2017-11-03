@@ -1,7 +1,6 @@
 ﻿using BowlingLib.Model.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using BowlingLib.Model;
 
 namespace BowlingTestBase
@@ -9,8 +8,9 @@ namespace BowlingTestBase
     /// <summary>
     /// Attempted facade pattern.
     /// </summary>
-    class FakeRepository : IRepository
+    public class FakeRepository : IRepository
     {
+        #region Competitions
         public DatabaseResultState Create(ICompetition competition)
         {
             try
@@ -21,19 +21,16 @@ namespace BowlingTestBase
             catch (Exception)
             {
                 return DatabaseResultState.failed;
-            }            
+            }
         }
-
         public IEnumerable<ICompetition> GetAllCompetition()
         {
             return InMemDb.Db.Competitions;
         }
-
         public ICompetition GetCompetitionById(int id)
         {
             return InMemDb.Db.Competitions.Find(x => x.CompetitionId == id);
         }
-
         public DatabaseResultState Remove(ICompetition competition)
         {
             try
@@ -43,10 +40,9 @@ namespace BowlingTestBase
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;   
+                return DatabaseResultState.failed;
             }
         }
-
         public DatabaseResultState Update(ICompetition competition)
         {
             try
@@ -60,5 +56,52 @@ namespace BowlingTestBase
                 return DatabaseResultState.failed;
             }
         }
+        #endregion
+
+        #region Member
+        public DatabaseResultState Create(Member member)
+        {
+            try
+            {
+                InMemDb.Db.Members.Add(member);
+                return DatabaseResultState.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResultState.failed;
+            }
+        }        
+        public IEnumerable<Member> GetAllMembers()
+        {
+            return InMemDb.Db.Members;
+        }
+        public Member GetMemberById(int id)
+        {
+            return InMemDb.Db.Members.Find(x => x.MemberId == id);
+        }
+        public DatabaseResultState Remove(Member member)
+        {
+            try
+            {
+                InMemDb.Db.Members.Remove(member);
+                return DatabaseResultState.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResultState.failed;
+            }
+        }
+        public DatabaseResultState Update(Member member)
+        {
+            try
+            {
+                return DatabaseResultState.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResultState.failed;
+            }
+        }
+        #endregion
     }
 }

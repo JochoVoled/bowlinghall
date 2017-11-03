@@ -6,11 +6,12 @@ using System.Linq;
 
 namespace BowlingLib.Data
 {
+    // TODO Change data calls in code proper to go through IRepository
     public class Repository : IRepository
     {
-        // TODO Implement repository
         private static BowlingContext _context { get; set; }
-
+        
+        #region constructor
         public BowlingContext Context
         {
             get {
@@ -21,7 +22,8 @@ namespace BowlingLib.Data
                 return _context;
             }
         }
-
+        #endregion
+        #region Competition
         public DatabaseResultState Create(ICompetition competition)
         {
             try
@@ -75,5 +77,57 @@ namespace BowlingLib.Data
                 return DatabaseResultState.failed;
             }
         }
+        #endregion
+        #region Member
+        public DatabaseResultState Create(Member member)
+        {
+            try
+            {
+                _context.Members.Add(member);
+                return DatabaseResultState.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResultState.failed;
+            }
+        }
+
+        public DatabaseResultState Update(Member member)
+        {
+            try
+            {
+                // As of first implementation, Member only has ID, which should not be changed.
+                return DatabaseResultState.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResultState.failed;
+            }
+        }
+        public DatabaseResultState Remove(Member member)
+        {
+            try
+            {
+                _context.Members.Remove(member);
+                return DatabaseResultState.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResultState.failed;
+            }
+        }
+
+        public Member GetMemberById(int id)
+        {
+            var data = _context.Members.First(x => x.MemberId == id);
+            return data;
+        }
+
+        public IEnumerable<Member> GetAllMembers()
+        {
+            var data = _context.Members.ToList();
+            return data;
+        }
+        #endregion
     }
 }
