@@ -13,7 +13,7 @@ namespace BowlingTestBase
         {
             get
             {
-                if (Score == 0)
+                if (score == 0)
                     return CalculateScore();
                 return score;
             }
