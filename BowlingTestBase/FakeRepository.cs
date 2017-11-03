@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using BowlingLib.Model;
+using BowlingLib.Model.Enums;
 
 namespace BowlingTestBase
 {
@@ -11,16 +12,16 @@ namespace BowlingTestBase
     public class FakeRepository : IRepository
     {
         #region Competitions
-        public DatabaseResultState Create(ICompetition competition)
+        public DatabaseResult Create(ICompetition competition)
         {
             try
             {
                 InMemDb.Db.Competitions.Add((FakeCompetition)competition);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
         public IEnumerable<ICompetition> GetAllCompetition()
@@ -31,44 +32,44 @@ namespace BowlingTestBase
         {
             return InMemDb.Db.Competitions.Find(x => x.CompetitionId == id);
         }
-        public DatabaseResultState Remove(ICompetition competition)
+        public DatabaseResult Remove(ICompetition competition)
         {
             try
             {
                 InMemDb.Db.Competitions.Remove((FakeCompetition)competition);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
-        public DatabaseResultState Update(ICompetition competition)
+        public DatabaseResult Update(ICompetition competition)
         {
             try
             {
                 InMemDb.Db.Competitions.Find(x => x.CompetitionId == competition.CompetitionId).Matches = competition.Matches;
                 InMemDb.Db.Competitions.Find(x => x.CompetitionId == competition.CompetitionId).Players = competition.Players;
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
         #endregion
 
         #region Member
-        public DatabaseResultState Create(Member member)
+        public DatabaseResult Create(Member member)
         {
             try
             {
                 InMemDb.Db.Members.Add(member);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }        
         public IEnumerable<Member> GetAllMembers()
@@ -79,27 +80,27 @@ namespace BowlingTestBase
         {
             return InMemDb.Db.Members.Find(x => x.MemberId == id);
         }
-        public DatabaseResultState Remove(Member member)
+        public DatabaseResult Remove(Member member)
         {
             try
             {
                 InMemDb.Db.Members.Remove(member);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
-        public DatabaseResultState Update(Member member)
+        public DatabaseResult Update(Member member)
         {
             try
             {
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
         #endregion

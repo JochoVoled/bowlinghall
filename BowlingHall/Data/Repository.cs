@@ -1,5 +1,6 @@
 ﻿using BowlingLib.Model;
 using BowlingLib.Model.Interfaces;
+using BowlingLib.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,16 +25,16 @@ namespace BowlingLib.Data
         }
         #endregion
         #region Competition
-        public DatabaseResultState Create(ICompetition competition)
+        public DatabaseResult Create(ICompetition competition)
         {
             try
             {
                 _context.Competitions.Add((Competition)competition);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }            
         }
 
@@ -51,69 +52,69 @@ namespace BowlingLib.Data
             return data;
         }
 
-        public DatabaseResultState Remove(ICompetition competition)
+        public DatabaseResult Remove(ICompetition competition)
         {
             try
             {
                 _context.Competitions.Remove((Competition)competition);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
 
-        public DatabaseResultState Update(ICompetition competition)
+        public DatabaseResult Update(ICompetition competition)
         {
             try
             {
                 _context.Competitions.First(x => x.CompetitionId == competition.CompetitionId).Matches = competition.Matches;
                 _context.Competitions.First(x => x.CompetitionId == competition.CompetitionId).Players = competition.Players;
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
         #endregion
         #region Member
-        public DatabaseResultState Create(Member member)
+        public DatabaseResult Create(Member member)
         {
             try
             {
                 _context.Members.Add(member);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
 
-        public DatabaseResultState Update(Member member)
+        public DatabaseResult Update(Member member)
         {
             try
             {
                 // As of first implementation, Member only has ID, which should not be changed.
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
-        public DatabaseResultState Remove(Member member)
+        public DatabaseResult Remove(Member member)
         {
             try
             {
                 _context.Members.Remove(member);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception)
             {
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
 

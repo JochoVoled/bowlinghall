@@ -1,6 +1,6 @@
 ﻿using BowlingLib.Data;
 using BowlingLib.Model;
-using BowlingLib.Model.Interfaces;
+using BowlingLib.Model.Enums;
 using BowlingTestBase;
 using Xunit;
 
@@ -26,7 +26,7 @@ namespace BowlingIntegrationTests
             Member member = new Member(999);
             // Create Member, assert
             var cResult = repo.Create(member);
-            Assert.Equal(DatabaseResultState.successful, cResult);
+            Assert.Equal(DatabaseResult.successful, cResult);
 
             // Read Member, assert
             var rResult = repo.GetMemberById(member.MemberId);
