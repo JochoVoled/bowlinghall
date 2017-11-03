@@ -28,7 +28,7 @@ namespace BowlingTestBase
             score = 0;
             currentSeries = 1;
             currentRoll = 1;
-            Series = new List<string> { "", "", "" };
+            Series = new List<string>();
         }
         #endregion
         /// <summary>

@@ -11,7 +11,6 @@ namespace BowlingTests
         [Fact]
         public void CanDecideWinnerAfterSimulatedGame()
         {
-            // TODO, debug unit test
             Member member1 = InMemDb.Db.Members.Find(x => x.MemberId == 1);
             Member member2 = InMemDb.Db.Members.Find(x => x.MemberId == 2);
             Lane lane = InMemDb.Db.Lanes.Find(x => x.LaneId == 1);

@@ -25,7 +25,7 @@ namespace BowlingLib.Model
             score = 0;
             currentSeries = 1;
             currentRoll = 1;
-            Series = new List<string> { "", "", "" };
+            Series = new List<string>();
         }
         /// <summary>
         /// Steps through the series strings, and sums the scores. Adds flat values to Spares and Strikes right now.
