@@ -30,7 +30,7 @@ namespace BowlingTestBase
         public List<MatchMember> MatchMembers { get; set; }
         #endregion
 
-        public InMemDb()
+        protected InMemDb()
         {
             Competitions = new List<FakeCompetition>();
             Matches = new List<FakeMatch>();
@@ -43,7 +43,7 @@ namespace BowlingTestBase
             FakeCompetition competition = new FakeCompetition(1, members);
             Members.AddRange(members);
             Competitions.Add(competition);
-            competition.Matches.ForEach(x => Matches.Add((FakeMatch)x)); // System.InvalidCastException: 'Unable to cast object of type 'BowlingLib.Model.Match' to type 'BowlingTestBase.FakeMatch'.'
+            competition.Matches.ForEach(x => Matches.Add((FakeMatch)x));
 
             Lanes.Add(new Lane(1));
             CompetitionMembers.AddRange(
