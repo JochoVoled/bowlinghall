@@ -8,7 +8,27 @@ namespace BowlingIntegrationTests
         [Fact]
         public void MatchOrganizePlayers()
         {
-            // Match organizes Players with their Games
+            // System creates Competition
+
+
+        }
+
+        // System adds Match to Competition
+        [Fact]
+        public void SystemCreatesMatch()
+        {
+
+        }
+
+        [Fact]
+        public void SystemAddsMatchToCompetition()
+        {
+
+        }
+        // Match organizes Players with their Games
+        [Fact]
+        public void MatchSetsUpPlayersWithGames() {
+
         }
     }
 }
