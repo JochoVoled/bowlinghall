@@ -73,5 +73,72 @@ namespace BowlingLib.Model.Interfaces
         /// <returns>successful if transfer succeeded, otherwise failed</returns>
         DatabaseResult Remove(Member member);
         #endregion
+        #region lanes
+        /// <summary>
+        /// Creates a lane to database, based on a lane object
+        /// </summary>
+        /// <param name="lane">A lane object to save</param>
+        /// <returns>successful if transfer succeeded, otherwise failed</returns>
+        DatabaseResult Create(Lane lane);
+        /// <summary>
+        /// Fetches a lane by its id
+        /// </summary>
+        /// <param name="id">The available id</param>
+        /// <returns>Returns null if id does not map to any registered lane</returns>
+        Lane GetLaneById(int id);
+        /// <summary>
+        /// Gets all added Lanes
+        /// </summary>
+        /// <returns>All Lanes as an IEnumerable collection</returns>
+        IEnumerable<Lane> GetAllLanes();
+        /// <summary>
+        /// Updates a lane to database, based on a lane object
+        /// </summary>
+        /// <param name="member">A lane object to save</param>
+        /// <returns>successful if transfer succeeded, otherwise failed</returns>
+        DatabaseResult Update(Lane lane);
+        /// <summary>
+        /// Removes a lane to database, based on a lane object
+        /// </summary>
+        /// <param name="member">A member object to save</param>
+        /// <returns>successful if transfer succeeded, otherwise failed</returns>
+        #endregion
+        #region matches
+        /// <summary>
+        /// Creates a match to database, based on a match object
+        /// </summary>
+        /// <param name="match">A match object to save</param>
+        /// <returns>successful if transfer succeeded, otherwise failed</returns>
+        DatabaseResult Create(IMatch match);
+        /// <summary>
+        /// Fetches a match by its id
+        /// </summary>
+        /// <param name="id">The available id</param>
+        /// <returns>Returns null if id does not map to any registered member</returns>
+        IMatch GetMatchById(int id);
+        /// <summary>
+        /// Finds a match both players participate in. The order of the players does not matter.
+        /// </summary>
+        /// <param name="player1">One of the players</param>
+        /// <param name="player2">The other player </param>
+        /// <returns>Returns the matches where both players participated, or null if none was found</returns>
+        List<IMatch> GetMatchByPlayers(Member player1, Member player2);
+        /// <summary>
+        /// Gets all added matches
+        /// </summary>
+        /// <returns>All matches as an IEnumerable collection</returns>
+        IEnumerable<IMatch> GetAllMatches();
+        /// <summary>
+        /// Updates a member to database, based on a member object
+        /// </summary>
+        /// <param name="member">A member object to save</param>
+        /// <returns>successful if transfer succeeded, otherwise failed</returns>
+        DatabaseResult Update(IMatch match);
+        /// <summary>
+        /// Removes a member to database, based on a member object
+        /// </summary>
+        /// <param name="member">A member object to save</param>
+        /// <returns>successful if transfer succeeded, otherwise failed</returns>
+        #endregion
     }
 }

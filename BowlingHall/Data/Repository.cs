@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace BowlingLib.Data
 {
-    // TODO Change data calls in code proper to go through IRepository
     public class Repository : IRepository
     {
         #region properties
@@ -60,9 +59,7 @@ namespace BowlingLib.Data
 
         public ICompetition GetCompetitionById(int id)
         {
-            // TODO debug, then shrink to one line
-            var data = _context.Competitions.First(x => x.CompetitionId == id);
-            return data;
+            return _context.Competitions.First(x => x.CompetitionId == id);
         }
 
         public DatabaseResult Remove(ICompetition competition)
@@ -140,8 +137,7 @@ namespace BowlingLib.Data
 
         public Member GetMemberById(int id)
         {
-            var data = _context.Members.First(x => x.MemberId == id);
-            return data;
+            return _context.Members.First(x => x.MemberId == id);
         }
 
         public IEnumerable<Member> GetAllMembers()
@@ -149,6 +145,56 @@ namespace BowlingLib.Data
             var data = _context.Members.ToList();
             return data;
         }
+        #endregion
+        #region lanes
+        public DatabaseResult Create(Lane lane)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Lane GetLaneById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Lane> GetAllLanes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DatabaseResult Update(Lane lane)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+        #region matches
+        public DatabaseResult Create(IMatch match)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IMatch GetMatchById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<IMatch> GetMatchByPlayers(Member player1, Member player2)
+        {
+            
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<IMatch> GetAllMatches()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DatabaseResult Update(IMatch match)
+        {
+            throw new NotImplementedException();
+        }
+
+
         #endregion
     }
 }

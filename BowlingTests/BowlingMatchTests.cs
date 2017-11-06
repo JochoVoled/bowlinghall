@@ -18,13 +18,15 @@ namespace BowlingTests
             Member member1 = repo.GetMemberById(1);
             repo.Create(new Member(2));
             Member member2 = repo.GetMemberById(2);
-            
-            // TODO add Lane crud methods to IRepository
-            Lane lane = InMemDb.Db.Lanes.Find(x => x.LaneId == 1);
-            
-            // TODO add Match crud to IRepository
+
+            // TODO implement Lane crud methods to FakeRepository
+            repo.Create(new Lane(1));
+            Lane lane = repo.GetLaneById(1);
+
+            // TODO implement Match crud to FakeRepository
+            //FakeMatch sut = repo.GetMatchByPlayers(member1, member2);
             FakeMatch sut = InMemDb.Db.Matches.Find(x => x.PlayerOne.Key.MemberId == 1 && x.PlayerTwo.Key.MemberId == 2);
-            
+
             sut.Play();
             int winnerId = sut.CalculateWinner();
             

@@ -58,7 +58,6 @@ namespace BowlingTestBase
             }
         }
         #endregion
-
         #region Member
         public DatabaseResult Create(Member member)
         {
@@ -102,6 +101,51 @@ namespace BowlingTestBase
             {
                 return DatabaseResult.failed;
             }
+        }
+        #endregion
+        #region lanes
+        public DatabaseResult Create(Lane lane)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Lane GetLaneById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Lane> GetAllLanes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DatabaseResult Update(Lane lane)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+        #region match
+        public DatabaseResult Create(IMatch match)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IMatch GetMatchById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<IMatch> GetAllMatches()
+        {
+            throw new NotImplementedException();
+        }
+        public List<IMatch> GetMatchByPlayers(Member player1, Member player2)
+        {
+            throw new NotImplementedException();
+        }
+        public DatabaseResult Update(IMatch match)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
