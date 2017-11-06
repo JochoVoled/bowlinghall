@@ -17,7 +17,7 @@ namespace BowlingIntegrationTests
             };
             // Create competition, assert
             var cResult = repo.Create(competition);
-            Assert.Equal(DatabaseResultState.successful, cResult);
+            Assert.Equal(DatabaseResult.successful, cResult);
 
             // Read competition, assert
             var rResult = repo.GetCompetitionById(competition.CompetitionId);
@@ -26,7 +26,7 @@ namespace BowlingIntegrationTests
             // Update competition, assert
             competition.Matches.Add(new Match(new Member(4), new Member(5)));
             var uResult = repo.Update(competition);
-            Assert.Equal(DatabaseResultState.successful, uResult);
+            Assert.Equal(DatabaseResult.successful, uResult);
         }
 
         //Verifiera med integrationstester attdet går att generera, lagra och hämta medlemmar.
