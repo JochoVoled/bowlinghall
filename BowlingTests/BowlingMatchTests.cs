@@ -38,8 +38,9 @@ namespace BowlingTests
             Member member1 = repo.GetMemberById(1);
             repo.Create(new Member(2));
             Member member2 = repo.GetMemberById(2);
+            repo.Create(new FakeCompetition(1, new System.Collections.Generic.List<Member> { member1, member2 }));
 
-            FakeCompetition sut = InMemDb.Db.Competitions.Find(x => x.CompetitionId == 1);
+            FakeCompetition sut = (FakeCompetition)repo.GetCompetitionById(1); //InMemDb.Db.Competitions.Find(x => x.CompetitionId == 1);
             sut.Matches.ForEach(x => x.Play());
             
             // Call GetChampion from Competition class
