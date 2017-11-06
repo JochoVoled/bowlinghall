@@ -2,13 +2,13 @@
 using BowlingLib.Model.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace BowlingLib.Data
 {
     public class Repository : IRepository
     {
-        // TODO Implement repository
         private static BowlingContext _context { get; set; }
 
         public BowlingContext Context
@@ -29,8 +29,9 @@ namespace BowlingLib.Data
                 _context.Competitions.Add((Competition)competition);
                 return DatabaseResultState.successful;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine($"While attempting competition creation: {e.Message}", e.GetType().ToString() );
                 return DatabaseResultState.failed;
             }            
         }
@@ -56,8 +57,9 @@ namespace BowlingLib.Data
                 _context.Competitions.Remove((Competition)competition);
                 return DatabaseResultState.successful;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine($"While attempting competition removal: {e.Message}", "Error");
                 return DatabaseResultState.failed;
             }
         }
@@ -70,8 +72,9 @@ namespace BowlingLib.Data
                 _context.Competitions.First(x => x.CompetitionId == competition.CompetitionId).Players = competition.Players;
                 return DatabaseResultState.successful;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Debug.WriteLine($"While attempting competition update: {e.Message}", "Error");
                 return DatabaseResultState.failed;
             }
         }
