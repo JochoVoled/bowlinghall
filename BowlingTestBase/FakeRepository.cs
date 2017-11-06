@@ -9,7 +9,7 @@ namespace BowlingTestBase
     /// <summary>
     /// Attempted facade pattern.
     /// </summary>
-    class FakeRepository : IRepository
+    public class FakeRepository : IRepository
     {
         public DatabaseResultState Create(ICompetition competition)
         {
