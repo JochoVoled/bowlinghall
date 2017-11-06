@@ -1,7 +1,6 @@
 ﻿using BowlingLib.Model.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace BowlingLib.Model
@@ -14,7 +13,7 @@ namespace BowlingLib.Model
 
         public IList<string> Series { get; }
         public int Score { get {
-                if (Score == 0)
+                if (score == 0)
                     return CalculateScore();
                 return score;
             }}
@@ -25,7 +24,7 @@ namespace BowlingLib.Model
             score = 0;
             currentSeries = 1;
             currentRoll = 1;
-            Series = new List<string> { "", "", "" };
+            Series = new List<string>();
         }
         /// <summary>
         /// Steps through the series strings, and sums the scores. Adds flat values to Spares and Strikes right now.

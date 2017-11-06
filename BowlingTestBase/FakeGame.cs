@@ -1,7 +1,6 @@
 ﻿using BowlingLib.Model.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BowlingTestBase
 {
@@ -13,7 +12,7 @@ namespace BowlingTestBase
         {
             get
             {
-                if (Score == 0)
+                if (score == 0)
                     return CalculateScore();
                 return score;
             }
@@ -28,7 +27,7 @@ namespace BowlingTestBase
             score = 0;
             currentSeries = 1;
             currentRoll = 1;
-            Series = new List<string> { "", "", "" };
+            Series = new List<string>();
         }
         #endregion
         /// <summary>

@@ -1,5 +1,4 @@
 ﻿using BowlingLib.Model.Interfaces;
-using System;
 using System.Collections.Generic;
 using BowlingLib.Model;
 using System.Linq;
@@ -50,14 +49,9 @@ namespace BowlingTestBase
         /// Gets the Member obect with highest win ratio
         /// </summary>
         /// <returns>Member obect with highest win ratio</returns>
-
         public Member GetChampion()
         {
-            foreach (var player in Players)
-            {
-                AssignWinRatio(player);
-            }
-
+            Players.Keys.ToList().ForEach(x => Players[x] = CalculateWinRatio(x));
             var champion = Players.OrderByDescending(x => x.Value).First().Key;
             return champion;
         }
@@ -66,13 +60,13 @@ namespace BowlingTestBase
         /// Calculates a player's win ratio
         /// </summary>
         /// <param name="player">A key-value pair, where the key is a Member and value is their winratio</param>
-        private void AssignWinRatio(KeyValuePair<Member, decimal> player)
+        private decimal CalculateWinRatio(Member player)
         {
             int participated, wins = 0;
-            participated = Matches.Count(x => x.PlayerOne.Key == player.Key || x.PlayerTwo.Key == player.Key);
-            wins = Matches.Count(x => x.CalculateWinner() == player.Key.MemberId);
+            participated = Matches.Count(x => x.PlayerOne.Key == player || x.PlayerTwo.Key == player);
+            wins = Matches.Count(x => x.CalculateWinner() == player.MemberId);
             decimal ratio = wins / (decimal)participated;
-            Players[player.Key] = ratio;
+            return ratio;
         }
     }
 }

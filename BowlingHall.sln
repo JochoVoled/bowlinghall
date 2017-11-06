@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingLib", "BowlingHall\BowlingLib.csproj", "{916F51AB-D426-4221-9CD1-F47606062557}"
 EndProject
@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingUnitTests", "Bowling
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestProjects", "TestProjects", "{8F1AEEA2-565B-4A98-A98F-D45E368FBF1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingIntegrationTests", "BowlingIntegrationTests\BowlingIntegrationTests.csproj", "{33EE0E79-A07E-4B11-B31A-C0345004CB43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingIntegrationTests", "BowlingIntegrationTests\BowlingIntegrationTests.csproj", "{33EE0E79-A07E-4B11-B31A-C0345004CB43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingTestBase", "BowlingTestBase\BowlingTestBase.csproj", "{6B4A367A-832A-493D-BCDD-200589D77E5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BowlingTestBase", "BowlingTestBase\BowlingTestBase.csproj", "{6B4A367A-832A-493D-BCDD-200589D77E5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmpFunctionParameter", "TmpFunctionParameter\TmpFunctionParameter.csproj", "{7F87992C-177B-4463-B1B3-E75BABAD6FDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{6B4A367A-832A-493D-BCDD-200589D77E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B4A367A-832A-493D-BCDD-200589D77E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B4A367A-832A-493D-BCDD-200589D77E5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F87992C-177B-4463-B1B3-E75BABAD6FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F87992C-177B-4463-B1B3-E75BABAD6FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F87992C-177B-4463-B1B3-E75BABAD6FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F87992C-177B-4463-B1B3-E75BABAD6FDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

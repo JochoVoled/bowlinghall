@@ -29,8 +29,8 @@ namespace BowlingTestBase
         public List<CompetitionMember> CompetitionMembers { get; set; }
         public List<MatchMember> MatchMembers { get; set; }
         #endregion
-
-        public InMemDb()
+        #region constructor
+        protected InMemDb()
         {
             Competitions = new List<FakeCompetition>();
             Matches = new List<FakeMatch>();
@@ -38,12 +38,19 @@ namespace BowlingTestBase
             Lanes = new List<Lane>();
             CompetitionMembers = new List<CompetitionMember>();
             MatchMembers = new List<MatchMember>();
+        }
+        #endregion
 
+        /// <summary>
+        /// Seeds the InMemDb. Unknown: Does it have to be static?
+        /// </summary>
+        protected void Seed()
+        {
             List<Member> members = new List<Member> { new Member(1), new Member(2) };
             FakeCompetition competition = new FakeCompetition(1, members);
             Members.AddRange(members);
             Competitions.Add(competition);
-            competition.Matches.ForEach(x => Matches.Add((FakeMatch)x)); // System.InvalidCastException: 'Unable to cast object of type 'BowlingLib.Model.Match' to type 'BowlingTestBase.FakeMatch'.'
+            competition.Matches.ForEach(x => Matches.Add((FakeMatch)x));
 
             Lanes.Add(new Lane(1));
             CompetitionMembers.AddRange(

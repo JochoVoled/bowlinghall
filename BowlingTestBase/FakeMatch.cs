@@ -6,35 +6,37 @@ namespace BowlingTestBase
 {
     public class FakeMatch : IMatch
     {
+        #region properties
         public int CompetitionId { get; set; }
+        private int winnerId { get; set; }
         private KeyValuePair<Member, IGame> playerOne { get; set; }
         private KeyValuePair<Member, IGame> playerTwo { get; set; }
         public KeyValuePair<Member, IGame> PlayerOne { get => playerOne; }
         public KeyValuePair<Member, IGame> PlayerTwo { get => playerTwo; }
-
-
         public int WinnerId
         {
             get
             {
-                if (WinnerId == 0) return CalculateWinner();
-                return WinnerId;
+                if (winnerId == 0) return CalculateWinner();
+                return winnerId;
             }
-            set { WinnerId = value; }
+            set { winnerId = value; }
         }
-
+        #endregion
+        #region constructors
         public FakeMatch(Member PlayerOne, Member PlayerTwo)
         {
             playerOne = new KeyValuePair<Member, IGame>(PlayerOne, new FakeGame());
             playerTwo = new KeyValuePair<Member, IGame>(PlayerTwo, new FakeGame());
 
-            WinnerId = 0;
+            winnerId = 0;
         }
 
         public FakeMatch(Member PlayerOne, Member PlayerTwo, int CompetitionId): this(PlayerOne,PlayerTwo)
         {
             this.CompetitionId = CompetitionId;
         }
+        #endregion
 
         public int CalculateWinner()
         {

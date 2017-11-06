@@ -1,11 +1,12 @@
 ﻿using BowlingLib.Data;
 using BowlingLib.Model;
-using BowlingLib.Model.Interfaces;
+using BowlingLib.Model.Enums;
+using BowlingTestBase;
 using Xunit;
 
 namespace BowlingIntegrationTests
 {
-    public class ValidateRequirements
+    public class VerifyRequirements
     {
         [Fact]
         public void CruCompetitionInfo()
@@ -32,9 +33,18 @@ namespace BowlingIntegrationTests
         [Fact]
         public void CruMember()
         {
+            Repository repo = new Repository();
+            Member member = new Member(999);
             // Create Member, assert
+            var cResult = repo.Create(member);
+            Assert.Equal(DatabaseResult.successful, cResult);
+
             // Read Member, assert
+            var rResult = repo.GetMemberById(member.MemberId);
+            Assert.Equal(member, rResult);
+
             // Update Member, assert
+            // Kind of pointless, as member only has one property, which is unchangable
         }
     }
 }

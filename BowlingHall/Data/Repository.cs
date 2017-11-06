@@ -1,5 +1,6 @@
 ﻿using BowlingLib.Model;
 using BowlingLib.Model.Interfaces;
+using BowlingLib.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,10 +8,12 @@ using System.Linq;
 
 namespace BowlingLib.Data
 {
+    // TODO Change data calls in code proper to go through IRepository
     public class Repository : IRepository
     {
         private static BowlingContext _context { get; set; }
-
+        
+        #region constructor
         public BowlingContext Context
         {
             get {
@@ -21,18 +24,19 @@ namespace BowlingLib.Data
                 return _context;
             }
         }
-
-        public DatabaseResultState Create(ICompetition competition)
+        #endregion
+        #region Competition
+        public DatabaseResult Create(ICompetition competition)
         {
             try
             {
                 _context.Competitions.Add((Competition)competition);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception e)
             {
                 Debug.WriteLine($"While attempting competition creation: {e.Message}", e.GetType().ToString() );
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }            
         }
 
@@ -50,33 +54,84 @@ namespace BowlingLib.Data
             return data;
         }
 
-        public DatabaseResultState Remove(ICompetition competition)
+        public DatabaseResult Remove(ICompetition competition)
         {
             try
             {
                 _context.Competitions.Remove((Competition)competition);
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
             catch (Exception e)
             {
                 Debug.WriteLine($"While attempting competition removal: {e.Message}", "Error");
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
 
-        public DatabaseResultState Update(ICompetition competition)
+        public DatabaseResult Update(ICompetition competition)
         {
             try
             {
                 _context.Competitions.First(x => x.CompetitionId == competition.CompetitionId).Matches = competition.Matches;
                 _context.Competitions.First(x => x.CompetitionId == competition.CompetitionId).Players = competition.Players;
-                return DatabaseResultState.successful;
+                return DatabaseResult.successful;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Debug.WriteLine($"While attempting competition update: {e.Message}", "Error");
-                return DatabaseResultState.failed;
+                return DatabaseResult.failed;
             }
         }
+        #endregion
+        #region Member
+        public DatabaseResult Create(Member member)
+        {
+            try
+            {
+                _context.Members.Add(member);
+                return DatabaseResult.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResult.failed;
+            }
+        }
+
+        public DatabaseResult Update(Member member)
+        {
+            try
+            {
+                // As of first implementation, Member only has ID, which should not be changed.
+                return DatabaseResult.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResult.failed;
+            }
+        }
+        public DatabaseResult Remove(Member member)
+        {
+            try
+            {
+                _context.Members.Remove(member);
+                return DatabaseResult.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResult.failed;
+            }
+        }
+
+        public Member GetMemberById(int id)
+        {
+            var data = _context.Members.First(x => x.MemberId == id);
+            return data;
+        }
+
+        public IEnumerable<Member> GetAllMembers()
+        {
+            var data = _context.Members.ToList();
+            return data;
+        }
+        #endregion
     }
 }
