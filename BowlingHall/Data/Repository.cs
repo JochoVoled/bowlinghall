@@ -11,9 +11,8 @@ namespace BowlingLib.Data
     // TODO Change data calls in code proper to go through IRepository
     public class Repository : IRepository
     {
-        private static BowlingContext _context { get; set; }
-        
-        #region constructor
+        #region properties
+        private static BowlingContext _context { get; set; }        
         public BowlingContext Context
         {
             get {
@@ -25,19 +24,31 @@ namespace BowlingLib.Data
             }
         }
         #endregion
+        #region constructor
+        public Repository()
+        {
+            _context = new BowlingContext();
+        }
+        #endregion
         #region Competition
         public DatabaseResult Create(ICompetition competition)
         {
-            try
-            {
+            //try
+            //{
                 _context.Competitions.Add((Competition)competition);
                 return DatabaseResult.successful;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine($"While attempting competition creation: {e.Message}", e.GetType().ToString() );
-                return DatabaseResult.failed;
-            }            
+                // TODO SOLVE System.InvalidOperationException:
+                /* 'The property 'Competition.Matches' is of an interface type ('List<IMatch>').
+                 * If it is a navigation property manually configure the relationship for this property
+                 * by casting it to a mapped entity type, otherwise ignore the property
+                 * using the '[NotMapped]' attribute or by using 
+                 * 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.' */
+            //}
+            //catch (Exception e)
+            //{
+            //    Debug.WriteLine($"While attempting competition creation: {e.Message}", e.GetType().ToString() );
+            //    return DatabaseResult.failed;
+            //}            
         }
 
         public IEnumerable<ICompetition> GetAllCompetition()
@@ -85,15 +96,21 @@ namespace BowlingLib.Data
         #region Member
         public DatabaseResult Create(Member member)
         {
-            try
-            {
+            //try
+            //{
                 _context.Members.Add(member);
-                return DatabaseResult.successful;
-            }
-            catch (Exception)
-            {
-                return DatabaseResult.failed;
-            }
+            // TODO SOLVE System.InvalidOperationException:
+                /* 'The property 'Competition.Matches' is of an interface type ('List<IMatch>').
+                 * If it is a navigation property manually configure the relationship for this property
+                 * by casting it to a mapped entity type, otherwise ignore the property
+                 * using the '[NotMapped]' attribute or by using 
+                 * 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.' */
+            return DatabaseResult.successful;
+            //}
+            //catch (Exception)
+            //{
+            //    return DatabaseResult.failed;
+            //}
         }
 
         public DatabaseResult Update(Member member)
