@@ -122,7 +122,7 @@ namespace BowlingLib.Model.Interfaces
         /// <param name="player1">One of the players</param>
         /// <param name="player2">The other player </param>
         /// <returns>Returns the matches where both players participated, or null if none was found</returns>
-        List<IMatch> GetMatchByPlayers(Member player1, Member player2);
+        List<Match> GetMatchByPlayers(Member player1, Member player2);
         /// <summary>
         /// Gets all added matches
         /// </summary>

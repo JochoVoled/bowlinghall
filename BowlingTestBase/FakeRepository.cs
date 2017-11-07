@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using BowlingLib.Model;
 using BowlingLib.Model.Enums;
+using System.Linq;
 
 namespace BowlingTestBase
 {
@@ -106,17 +107,25 @@ namespace BowlingTestBase
         #region lanes
         public DatabaseResult Create(Lane lane)
         {
-            throw new NotImplementedException();
+            try
+            {
+                InMemDb.Db.Lanes.Add(lane);
+                return DatabaseResult.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResult.failed;
+            }
         }
 
         public Lane GetLaneById(int id)
         {
-            throw new NotImplementedException();
+            return InMemDb.Db.Lanes.Find(x => x.LaneId == id);
         }
 
         public IEnumerable<Lane> GetAllLanes()
         {
-            throw new NotImplementedException();
+            return InMemDb.Db.Lanes;
         }
 
         public DatabaseResult Update(Lane lane)
@@ -127,21 +136,29 @@ namespace BowlingTestBase
         #region match
         public DatabaseResult Create(IMatch match)
         {
-            throw new NotImplementedException();
+            try
+            {
+                InMemDb.Db.Matches.Add((Match)match);
+                return DatabaseResult.successful;
+            }
+            catch (Exception)
+            {
+                return DatabaseResult.failed;
+            }
         }
 
         public IMatch GetMatchById(int id)
         {
-            throw new NotImplementedException();
+            return InMemDb.Db.Matches.Find(x => x.MatchId == id);
         }
 
         public IEnumerable<IMatch> GetAllMatches()
         {
             throw new NotImplementedException();
         }
-        public List<IMatch> GetMatchByPlayers(Member player1, Member player2)
+        public List<Match> GetMatchByPlayers(Member player1, Member player2)
         {
-            throw new NotImplementedException();
+            return InMemDb.Db.Matches.Where(x => (x.PlayerOne.Key==player1 && x.PlayerTwo.Key == player2 ) || (x.PlayerTwo.Key == player1 && x.PlayerOne.Key == player2)).ToList();
         }
         public DatabaseResult Update(IMatch match)
         {

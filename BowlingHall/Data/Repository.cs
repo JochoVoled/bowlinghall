@@ -36,7 +36,7 @@ namespace BowlingLib.Data
             //{
                 _context.Competitions.Add((Competition)competition);
                 return DatabaseResult.successful;
-                // TODO SOLVE System.InvalidOperationException:
+                // TODO (high prio) System.InvalidOperationException:
                 /* 'The property 'Competition.Matches' is of an interface type ('List<IMatch>').
                  * If it is a navigation property manually configure the relationship for this property
                  * by casting it to a mapped entity type, otherwise ignore the property
@@ -52,7 +52,6 @@ namespace BowlingLib.Data
 
         public IEnumerable<ICompetition> GetAllCompetition()
         {
-            // TODO debug, then shrink to one line
             var data = (IEnumerable<Competition>)_context.Competitions.ToList();
             return data;
         }
@@ -96,7 +95,7 @@ namespace BowlingLib.Data
             //try
             //{
                 _context.Members.Add(member);
-            // TODO SOLVE System.InvalidOperationException:
+            // TODO (high prio) System.InvalidOperationException:
                 /* 'The property 'Competition.Matches' is of an interface type ('List<IMatch>').
                  * If it is a navigation property manually configure the relationship for this property
                  * by casting it to a mapped entity type, otherwise ignore the property
@@ -178,7 +177,7 @@ namespace BowlingLib.Data
             throw new NotImplementedException();
         }
 
-        public List<IMatch> GetMatchByPlayers(Member player1, Member player2)
+        public List<Match> GetMatchByPlayers(Member player1, Member player2)
         {
             
             throw new NotImplementedException();
