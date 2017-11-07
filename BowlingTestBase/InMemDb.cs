@@ -22,7 +22,7 @@ namespace BowlingTestBase
                 return db;
             }
         }
-        public List<FakeCompetition> Competitions { get; set; }
+        public List<Competition> Competitions { get; set; }
         public List<FakeMatch> Matches { get; set; }
         public List<Member> Members { get; set; }
         public List<Lane> Lanes { get; set; }
@@ -32,7 +32,7 @@ namespace BowlingTestBase
         #region constructor
         protected InMemDb()
         {
-            Competitions = new List<FakeCompetition>();
+            Competitions = new List<Competition>();
             Matches = new List<FakeMatch>();
             Members = new List<Member>();
             Lanes = new List<Lane>();
@@ -47,7 +47,7 @@ namespace BowlingTestBase
         protected void Seed()
         {
             List<Member> members = new List<Member> { new Member(1), new Member(2) };
-            FakeCompetition competition = new FakeCompetition(1, members);
+            Competition competition = new Competition(1, members);
             Members.AddRange(members);
             Competitions.Add(competition);
             competition.Matches.ForEach(x => Matches.Add((FakeMatch)x));

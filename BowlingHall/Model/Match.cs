@@ -61,40 +61,36 @@ namespace BowlingLib.Model
                 string p1series = "..,..,..,..,..,..,..,..,..,...";
                 string p2series = "..,..,..,..,..,..,..,..,..,...";
                 char[][] seriesCharArray = { p1series.ToCharArray(), p2series.ToCharArray() };
-                int cursor = 0;
                 int cursorOnPlayer = 0;
-                while (Regex.IsMatch(p1series,"\\.") || Regex.IsMatch(p2series, "\\."))
+                for (int cursor = 0; cursor < seriesCharArray[1].Length; cursor++)
                 {
                     // Upon encountering a ',', switch player or proceed to the next round
-                    if (seriesCharArray[cursorOnPlayer][i] == ',')
+                    if (seriesCharArray[cursorOnPlayer][cursor] == ',')
                     {
-                        if (cursorOnPlayer == seriesCharArray.Length)
+                        // 'up one' and 'is len-1' to support multiple players in the future
+                        if (cursorOnPlayer == seriesCharArray.Length-1)
                         {
                             cursorOnPlayer = 0;
-                            cursor++;
                             continue;
                         }
                         cursorOnPlayer++;
-                        cursor = cursor - 2;
+                        cursor = cursor - 3;
                         continue;
                     }
-                    AssignThrowToSeriesString(i, seriesCharArray, cursorOnPlayer);
-                    cursor++;
+                    // TEMP keeping ThrowBall non-static to comply with interface, considering changing method call to delegate function
+                    char c = PlayerOne.Value.ThrowBall();
+                    if (cursorOnPlayer == 0)
+                    {
+                        seriesCharArray[cursorOnPlayer][cursor] = c;
+                    }
+                    else
+                    {
+                        seriesCharArray[cursorOnPlayer][cursor] = c;
+                    }
                 }
-                PlayerOne.Value.Series.Add(p1series);
-                PlayerTwo.Value.Series.Add(p2series);
-            }
-        }
-
-        private void AssignThrowToSeriesString(int i, char[][] seriesCharArray, int cursorOnPlayer)
-        {
-            if (cursorOnPlayer == 0)
-            {
-                seriesCharArray[cursorOnPlayer][i] = PlayerOne.Value.ThrowBall();
-            }
-            else
-            {
-                seriesCharArray[cursorOnPlayer][i] = PlayerTwo.Value.ThrowBall();
+                // TODO Solve "no assign to dictionary" problem
+                PlayerOne.Value.Series.Add(new string(seriesCharArray[0]));
+                PlayerTwo.Value.Series.Add(new string(seriesCharArray[1]));
             }
         }
 
