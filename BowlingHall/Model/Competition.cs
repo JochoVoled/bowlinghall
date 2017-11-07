@@ -1,5 +1,6 @@
 ﻿using BowlingLib.Model.Interfaces;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace BowlingLib.Model
@@ -8,15 +9,17 @@ namespace BowlingLib.Model
     {
         #region properties
         public int CompetitionId { get; set; }
-        public List<IMatch> Matches { get; set; }
+        [NotMapped]
+        public List<Match> Matches { get; set; }
         // In order to avoid confusin and circle-reference issues: These are for reference within the competition
+        [NotMapped]
         public Dictionary<Member,decimal> Players { get; set; }
         #endregion
         #region constructors
         public Competition()
         {
             Players = new Dictionary<Member, decimal>();
-            Matches = new List<IMatch>();
+            Matches = new List<Match>();
         }
 
         public Competition(int CompetitionId, List<Member> Players): this()

@@ -36,12 +36,7 @@ namespace BowlingLib.Data
             //{
                 _context.Competitions.Add((Competition)competition);
                 return DatabaseResult.successful;
-                // TODO (high prio) System.InvalidOperationException:
-                /* 'The property 'Competition.Matches' is of an interface type ('List<IMatch>').
-                 * If it is a navigation property manually configure the relationship for this property
-                 * by casting it to a mapped entity type, otherwise ignore the property
-                 * using the '[NotMapped]' attribute or by using 
-                 * 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.' */
+                // TODO (high prio) System.InvalidOperationException: 'The entity type 'CompetitionMember' requires a primary key to be defined.'
             //}
             //catch (Exception e)
             //{
@@ -95,12 +90,7 @@ namespace BowlingLib.Data
             //try
             //{
                 _context.Members.Add(member);
-            // TODO (high prio) System.InvalidOperationException:
-                /* 'The property 'Competition.Matches' is of an interface type ('List<IMatch>').
-                 * If it is a navigation property manually configure the relationship for this property
-                 * by casting it to a mapped entity type, otherwise ignore the property
-                 * using the '[NotMapped]' attribute or by using 
-                 * 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.' */
+                // TODO (high prio) System.InvalidOperationException: 'The entity type 'CompetitionMember' requires a primary key to be defined.'
             return DatabaseResult.successful;
             //}
             //catch (Exception)
