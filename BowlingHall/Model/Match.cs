@@ -7,6 +7,9 @@ namespace BowlingLib.Model
     public class Match : IMatch
     {
         #region properties
+        private int matchId { get; set; }
+        public int MatchId { get { return matchId; } }
+        private static int count { get; set; } = 0;
         public int CompetitionId { get; set; }
         private int winnerId { get; set; }
         private KeyValuePair<Member,IGame> playerOne { get; set; }
@@ -31,6 +34,7 @@ namespace BowlingLib.Model
             playerTwo = new KeyValuePair<Member, IGame>(PlayerTwo, new Game());
             
             winnerId = 0;
+            matchId = ++count;
         }
         public Match(Member PlayerOne, Member PlayerTwo, int CompetitionId): this(PlayerOne,PlayerTwo)
         {
@@ -88,12 +92,25 @@ namespace BowlingLib.Model
                         seriesCharArray[cursorOnPlayer][cursor] = c;
                     }
                 }
-                // TODO Solve "no assign to dictionary" problem
                 PlayerOne.Value.Series.Add(new string(seriesCharArray[0]));
                 PlayerTwo.Value.Series.Add(new string(seriesCharArray[1]));
             }
         }
-
+        public void FakePlay()
+        {
+            string p1series = "12,34,5S,63,72,81,9-,42,52,43-";
+            string p2series = "7S,X-,32,5S,8S,5S,X-,X-,4S,5S0";
+            PlayerOne.Value.Series.Add(p1series);
+            PlayerTwo.Value.Series.Add(p2series);
+            p1series = "12,34,5S,63,72,81,9-,42,52,43-";
+            p2series = "7S,X-,32,5S,8S,5S,X-,X-,4S,5S0";
+            PlayerOne.Value.Series.Add(p1series);
+            PlayerTwo.Value.Series.Add(p2series);
+            p1series = "12,34,5S,63,72,81,9-,42,52,43-";
+            p2series = "7S,X-,32,5S,8S,5S,X-,X-,4S,5S0";
+            PlayerOne.Value.Series.Add(p1series);
+            PlayerTwo.Value.Series.Add(p2series);
+        }
         public bool HasMatch(Member one, Member another)
         {
             if (playerOne.Key == one && playerTwo.Key == another) return true;
