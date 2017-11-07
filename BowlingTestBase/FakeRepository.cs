@@ -16,7 +16,7 @@ namespace BowlingTestBase
         {
             try
             {
-                InMemDb.Db.Competitions.Add((FakeCompetition)competition);
+                InMemDb.Db.Competitions.Add((Competition)competition);
                 return DatabaseResult.successful;
             }
             catch (Exception)
@@ -36,7 +36,7 @@ namespace BowlingTestBase
         {
             try
             {
-                InMemDb.Db.Competitions.Remove((FakeCompetition)competition);
+                InMemDb.Db.Competitions.Remove((Competition)competition);
                 return DatabaseResult.successful;
             }
             catch (Exception)
