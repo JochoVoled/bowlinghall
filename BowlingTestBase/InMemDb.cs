@@ -23,7 +23,7 @@ namespace BowlingTestBase
             }
         }
         public List<Competition> Competitions { get; set; }
-        public List<FakeMatch> Matches { get; set; }
+        public List<Match> Matches { get; set; }
         public List<Member> Members { get; set; }
         public List<Lane> Lanes { get; set; }
         public List<CompetitionMember> CompetitionMembers { get; set; }
@@ -33,7 +33,7 @@ namespace BowlingTestBase
         protected InMemDb()
         {
             Competitions = new List<Competition>();
-            Matches = new List<FakeMatch>();
+            Matches = new List<Match>();
             Members = new List<Member>();
             Lanes = new List<Lane>();
             CompetitionMembers = new List<CompetitionMember>();
@@ -50,7 +50,7 @@ namespace BowlingTestBase
             Competition competition = new Competition(1, members);
             Members.AddRange(members);
             Competitions.Add(competition);
-            competition.Matches.ForEach(x => Matches.Add((FakeMatch)x));
+            competition.Matches.ForEach(x => Matches.Add((Match)x));
 
             Lanes.Add(new Lane(1));
             CompetitionMembers.AddRange(
