@@ -1,7 +1,6 @@
 ﻿using BowlingLib.Data;
 using BowlingLib.Model;
 using BowlingLib.Model.Enums;
-using BowlingTestBase;
 using Xunit;
 
 namespace BowlingIntegrationTests
@@ -42,9 +41,6 @@ namespace BowlingIntegrationTests
             // Read Member, assert
             var rResult = repo.GetMemberById(member.MemberId);
             Assert.Equal(member, rResult);
-
-            // Update Member, assert
-            // Kind of pointless, as member only has one property, which is unchangable
         }
     }
 }

@@ -86,7 +86,7 @@ namespace BowlingLib.Model
         {
             char[] possibleOutcomes = { '-', 'S', 'X','1','2','3','4','5','6','7','8','9' };
             Random dice = new Random();
-            // TODO Add validation to throw randomization:
+            // TODO (low prio) Add validation to throw randomization:
             //  Sum of two throws may not exceed 10, as that is a Spare
             //  No throw may proceed Strike
             //  Tenth round will only have a third throw if the second is a S or X

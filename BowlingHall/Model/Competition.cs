@@ -50,6 +50,7 @@ namespace BowlingLib.Model
         /// <returns>Member obect with highest win ratio</returns>
         public Member GetChampion()
         {
+            //TODO (high prio) System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
             foreach (var player in Players)
             {
                 AssignWinRatio(player);
