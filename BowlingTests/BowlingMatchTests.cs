@@ -1,6 +1,7 @@
 using BowlingLib.Model;
 using BowlingLib.Model.Interfaces;
 using BowlingTestBase;
+using System.Collections.Generic;
 using Xunit;
 
 namespace BowlingTests
@@ -38,8 +39,9 @@ namespace BowlingTests
             Member member1 = repo.GetMemberById(1);
             repo.Create(new Member(2));
             Member member2 = repo.GetMemberById(2);
+            repo.Create(new Competition(1, new List<Member> { member1, member2}));
 
-            FakeCompetition sut = InMemDb.Db.Competitions.Find(x => x.CompetitionId == 1);
+            Competition sut = (Competition)repo.GetCompetitionById(1);
             sut.Matches.ForEach(x => x.Play());
             
             // Call GetChampion from Competition class
