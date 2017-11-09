@@ -4,7 +4,7 @@ namespace BowlingLib.Model.Interfaces
 {
     public interface IMatch
     {
-        int MatchId { get; }
+        //int MatchId { get; }
         KeyValuePair<Member,IGame> PlayerOne { get; }
         KeyValuePair<Member, IGame> PlayerTwo { get; }
         int WinnerId { get; set; }

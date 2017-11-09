@@ -17,7 +17,7 @@ namespace BowlingIntegrationTests
             // Create competition, assert
             var cResult = repo.Create(competition);
             Assert.Equal(DatabaseResult.successful, cResult);
-
+            repo.Save();
             // Read competition, assert
             var rResult = repo.GetCompetitionById(competition.CompetitionId);
             Assert.Equal(competition.CompetitionId, rResult.CompetitionId);
@@ -37,7 +37,7 @@ namespace BowlingIntegrationTests
             // Create Member, assert
             var cResult = repo.Create(member);
             Assert.Equal(DatabaseResult.successful, cResult);
-
+            repo.Save();
             // Read Member, assert
             var rResult = repo.GetMemberById(member.MemberId);
             Assert.Equal(member, rResult);

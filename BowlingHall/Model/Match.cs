@@ -1,14 +1,20 @@
 ﻿using BowlingLib.Model.Interfaces;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 
 namespace BowlingLib.Model
 {
-    public class Match : IMatch
+    [Table("Match")]
+    public class Match //: IMatch
     {
         #region properties
-        private int matchId { get; set; }
-        public int MatchId { get { return matchId; } }
+        [Key]
+        public int MatchId { get; private set; }
+        //[NotMapped]
+        //public int MatchId { get { return matchId; } }
+        [NotMapped]
         private static int count { get; set; } = 0;
         public int CompetitionId { get; set; }
         private int winnerId { get; set; }
@@ -28,13 +34,17 @@ namespace BowlingLib.Model
         #endregion
 
         #region constructors
+        public Match()
+        {
+
+        }
         public Match(Member PlayerOne, Member PlayerTwo)
         {
             playerOne = new KeyValuePair<Member,IGame>(PlayerOne, new Game());
             playerTwo = new KeyValuePair<Member, IGame>(PlayerTwo, new Game());
             
             winnerId = 0;
-            matchId = ++count;
+            MatchId = ++count;
         }
         public Match(Member PlayerOne, Member PlayerTwo, int CompetitionId): this(PlayerOne,PlayerTwo)
         {

@@ -149,7 +149,7 @@ namespace BowlingTestBase
 
         public IMatch GetMatchById(int id)
         {
-            return InMemDb.Db.Matches.Find(x => x.MatchId == id);
+            return (IMatch)InMemDb.Db.Matches.Find(x => x.MatchId == id);
         }
 
         public IEnumerable<IMatch> GetAllMatches()
@@ -165,5 +165,10 @@ namespace BowlingTestBase
             throw new NotImplementedException();
         }
         #endregion
+
+        public bool Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace BowlingLib.Model
         public Dictionary<Member,decimal> Players { get; set; }
         #endregion
         #region constructors
+
         public Competition()
         {
             Players = new Dictionary<Member, decimal>();
@@ -53,12 +54,7 @@ namespace BowlingLib.Model
         /// <returns>Member obect with highest win ratio</returns>
         public Member GetChampion()
         {
-            //TODO (high prio) System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
-            foreach (var player in Players)
-            {
-                AssignWinRatio(player);
-            }
-
+            Players = Players.Keys.ToDictionary(x => x, y => AssignWinRatio(y) );
             var champion = Players.OrderByDescending(x => x.Value).First().Key;
             return champion;
         }
@@ -67,13 +63,14 @@ namespace BowlingLib.Model
         /// Calculates a player's win ratio
         /// </summary>
         /// <param name="player">A key-value pair, where the key is a Member and value is their winratio</param>
-        private void AssignWinRatio(KeyValuePair<Member, decimal> player)
+        private decimal AssignWinRatio(Member player)
         {
             int participated, wins = 0;
-            participated = Matches.Count(x => x.PlayerOne.Key == player.Key || x.PlayerTwo.Key == player.Key);
-            wins = Matches.Count(x => x.CalculateWinner() == player.Key.MemberId);
+            participated = Matches.Count(x => x.PlayerOne.Key == player || x.PlayerTwo.Key == player);
+            wins = Matches.Count(x => x.CalculateWinner() == player.MemberId);
             decimal ratio = wins / (decimal)participated;
-            Players[player.Key] = ratio;
+            //Players[player.Key] = ratio;
+            return ratio;
         }
     }
 }

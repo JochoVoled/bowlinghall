@@ -1,7 +1,10 @@
-﻿namespace BowlingLib.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BowlingLib.Model
 {
     public class MatchMember
     {
+        [Key]
         public int MatchId { get; set; }
         public int MemberId { get; set; }
         public int Score { get; set; }
@@ -19,6 +22,10 @@
         public MatchMember(int MatchId, int MemberId, int Score, bool IsVictory): this(MatchId, MemberId, Score)
         {
             this.IsVictory = IsVictory;
+        }
+        public MatchMember()
+        {
+
         }
     }
 }

@@ -140,5 +140,6 @@ namespace BowlingLib.Model.Interfaces
         /// <param name="member">A member object to save</param>
         /// <returns>successful if transfer succeeded, otherwise failed</returns>
         #endregion
+        bool Save();
     }
 }

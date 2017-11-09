@@ -42,7 +42,7 @@ namespace BowlingTests
             repo.Create(new Competition(1, new List<Member> { member1, member2 }));
 
             Competition sut = (Competition)repo.GetCompetitionById(1);
-            sut.Matches.ForEach(x => x.Play());
+            sut.Matches.ForEach(x => x.FakePlay());
 
             // Call GetChampion from Competition class
             Member winner = sut.GetChampion();

@@ -1,16 +1,20 @@
 ﻿using BowlingLib.Model.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 
 namespace BowlingLib.Model
 {
     class Game : IGame
     {
+        [Key]
+        public int GameId { get; set; }
         private int score { get; set; }
         private int currentSeries { get; set; }
         private int currentRoll { get; set; }
-
+        [NotMapped]
         public IList<string> Series { get; }
         public int Score { get {
                 if (score == 0)

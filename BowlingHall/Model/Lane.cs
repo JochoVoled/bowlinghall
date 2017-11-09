@@ -7,5 +7,9 @@
         {
             this.LaneId = LaneId;
         }
+        public Lane()
+        {
+
+        }
     }
 }
